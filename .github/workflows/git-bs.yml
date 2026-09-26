@@ -13,5 +13,9 @@ jobs:
     runs-on: macos-latest
     steps:
       - run: brew install Bhacaz/tap/git-bs
+      - name: Verify Git alias without shell reload
+        run: |
+          test "$(git config --global --get alias.bs)" = "!$(brew --prefix git-bs)/bin/git-bs"
+          git bs --version
       - run: brew test Bhacaz/tap/git-bs
       - run: git-bs --version

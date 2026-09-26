@@ -1,16 +1,33 @@
 class GitBs < Formula
   desc "Interactive Git branch selector with fuzzy search and commit previews"
   homepage "https://github.com/Bhacaz/git-bs"
-  url "https://github.com/Bhacaz/git-bs/releases/download/v0.1.0/git-bs-0.1.0.tar.gz"
-  sha256 "1f9b5b91a260bdd9570775ec81d02af8382ef85162d3c7b1f6857e8e16dedb6c"
+  version "0.2.0"
   license "MIT"
 
-  depends_on "rust" => :build
+  if OS.mac?
+    if Hardware::CPU.arm?
+      url "https://github.com/Bhacaz/git-bs/releases/download/v0.2.0/git-bs-v0.2.0-macos-arm64.tar.gz"
+      sha256 "7fdfdbb6a9fe97f60ce0e51a75864db091b4d188ddf640e81a6f9fd853f9850f"
+    else
+      url "https://github.com/Bhacaz/git-bs/releases/download/v0.2.0/git-bs-v0.2.0-macos-x86_64.tar.gz"
+      sha256 "beaf63e79e00f862adbeb26f36f0ecedbdef3a0748d6aa20afc4eaa428a8a1ae"
+    end
+  elsif Hardware::CPU.arm?
+    url "https://github.com/Bhacaz/git-bs/releases/download/v0.2.0/git-bs-v0.2.0-linux-arm64.tar.gz"
+    sha256 "30fa9edfd58b9e0e23ae9c1a54586cbebaea0da5e3f84ce557aaf23dab4953e3"
+  else
+    url "https://github.com/Bhacaz/git-bs/releases/download/v0.2.0/git-bs-v0.2.0-linux-x86_64.tar.gz"
+    sha256 "27edd28e2d059f88df6a67374b5b651aadd47fe442deffa0faaa6ab9d04ad247"
+  end
+
   uses_from_macos "git"
 
   def install
-    system "cargo", "build", "--release", "--locked"
-    bin.install "target/release/git-bs"
+    bin.install "git-bs"
+  end
+
+  post_install_steps do
+    run "git", args: ["config", "--global", "--replace-all", "alias.bs", "!{{opt_prefix}}/bin/git-bs"]
   end
 
   test do
