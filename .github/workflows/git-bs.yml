@@ -1,0 +1,17 @@
+name: git-bs Homebrew smoke test
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - Formula/git-bs.rb
+      - .github/workflows/git-bs.yml
+  workflow_dispatch:
+
+jobs:
+  install:
+    runs-on: macos-latest
+    steps:
+      - run: brew install Bhacaz/tap/git-bs
+      - run: brew test Bhacaz/tap/git-bs
+      - run: git-bs --version
