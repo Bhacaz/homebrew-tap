@@ -10,10 +10,18 @@ on:
 
 jobs:
   install:
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        os: [macos-15, macos-15-intel]
+    runs-on: ${{ matrix.os }}
     steps:
       - run: brew install Bhacaz/tap/git-bs
       - name: Verify Git subcommand without shell reload
         run: git bs --version
+      - name: Verify existing alias can be replaced immediately
+        run: |
+          git config --global alias.bs '!false'
+          git config --global alias.bs "!$(brew --prefix git-bs)/bin/git-bs"
+          git bs --version
       - run: brew test Bhacaz/tap/git-bs
       - run: git-bs --version
