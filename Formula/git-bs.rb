@@ -26,8 +26,13 @@ class GitBs < Formula
     bin.install "git-bs"
   end
 
-  post_install_steps do
-    run "/usr/bin/env", args: ["-u", "GIT_CONFIG_GLOBAL", "git", "config", "--global", "--replace-all", "alias.bs", "!{{opt_prefix}}/bin/git-bs"]
+  def caveats
+    <<~EOS
+      Git discovers git-bs automatically, so `git bs` works without a shell reload.
+      If an older bs alias points elsewhere, replace it with:
+        git config --global alias.bs '!#{opt_bin}/git-bs'
+      Git reads alias changes on the next invocation; no sourcing is needed.
+    EOS
   end
 
   test do
