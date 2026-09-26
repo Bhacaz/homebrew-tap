@@ -27,7 +27,7 @@ class GitBs < Formula
   end
 
   post_install_steps do
-    run "git", args: ["config", "--global", "--replace-all", "alias.bs", "!{{opt_prefix}}/bin/git-bs"]
+    run "/usr/bin/env", args: ["-u", "GIT_CONFIG_GLOBAL", "git", "config", "--global", "--replace-all", "alias.bs", "!{{opt_prefix}}/bin/git-bs"]
   end
 
   test do
