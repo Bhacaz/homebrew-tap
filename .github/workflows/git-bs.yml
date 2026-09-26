@@ -12,9 +12,11 @@ jobs:
   install:
     strategy:
       matrix:
-        os: [macos-15, macos-15-intel]
+        os: [macos-15, macos-15-intel, ubuntu-24.04, ubuntu-24.04-arm]
     runs-on: ${{ matrix.os }}
     steps:
+      - if: runner.os == 'Linux'
+        run: echo '/home/linuxbrew/.linuxbrew/bin' >> "$GITHUB_PATH"
       - run: brew install Bhacaz/tap/git-bs
       - name: Verify Git subcommand without shell reload
         run: git bs --version
