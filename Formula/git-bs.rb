@@ -1,23 +1,23 @@
 class GitBs < Formula
   desc "Interactive Git branch selector with fuzzy search and commit previews"
   homepage "https://github.com/Bhacaz/git-bs"
-  version "0.2.2"
+  version "0.2.3"
   license "MIT"
 
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/Bhacaz/git-bs/releases/download/v0.2.2/git-bs-v0.2.2-macos-arm64.tar.gz"
-      sha256 "c5f5fea1a2b25038dc3326e065af33a28cbc6df6274dd63c58a1cfdf77c85369"
+      url "https://github.com/Bhacaz/git-bs/releases/download/v0.2.3/git-bs-v0.2.3-macos-arm64.tar.gz"
+      sha256 "5e3800ec6ed963c27afdb4ae58fa66c1e1b4ff083706af04aa07ea7aa72df833"
     else
-      url "https://github.com/Bhacaz/git-bs/releases/download/v0.2.2/git-bs-v0.2.2-macos-x86_64.tar.gz"
-      sha256 "9dab4c6f48b557baa358d603da32d0abb4d90894797ba4d9b686113bfb651c67"
+      url "https://github.com/Bhacaz/git-bs/releases/download/v0.2.3/git-bs-v0.2.3-macos-x86_64.tar.gz"
+      sha256 "2de9860f897ee66a069bc465a5f18cf0a33a62f3d286c317fb7a4c83bd97138c"
     end
   elsif Hardware::CPU.arm?
-    url "https://github.com/Bhacaz/git-bs/releases/download/v0.2.2/git-bs-v0.2.2-linux-arm64.tar.gz"
-    sha256 "6c8f1e509bec1cc0e001e57eb94f0577c83375661a70574d4ead00d3200616c9"
+    url "https://github.com/Bhacaz/git-bs/releases/download/v0.2.3/git-bs-v0.2.3-linux-arm64.tar.gz"
+    sha256 "be994723440732ebdf681c482f6da790cf06828a79bd253acc06c8387b416bf6"
   else
-    url "https://github.com/Bhacaz/git-bs/releases/download/v0.2.2/git-bs-v0.2.2-linux-x86_64.tar.gz"
-    sha256 "f96cfa2a368d132092ecc7c8da9ec65a52cc017f2ae4d314edc31a4561e7e746"
+    url "https://github.com/Bhacaz/git-bs/releases/download/v0.2.3/git-bs-v0.2.3-linux-x86_64.tar.gz"
+    sha256 "2ed2467fcb95e758651b520e58cf13556ecb3a3831a4be9a9936626079cf4006"
   end
 
   uses_from_macos "git"
